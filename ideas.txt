@@ -1,0 +1,11 @@
+# Checking the enemy's weakness
+- Take the colour of the logo under their status
+- Switch equipment
+-- Hover over the logo, then check image for the element icons
+
+# Frogzard Challenge
+- Repeating fights and pressing button
+
+# Rare Monster
+- Todays Event > Rare Monster
+- Fighting monster, going back to heal and then fighting again
