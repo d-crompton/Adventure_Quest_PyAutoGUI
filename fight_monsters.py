@@ -36,6 +36,8 @@ while True:
         time.sleep(5)
 
 # In Battle
+    # SET-UP CHARACTER
+    battle.change_weapon()
     # ADD CONDITION TO CHECK IF YOU'RE ACTUALLY IN BATTLE before starting loop - Enemy health bar?
     while True:
         try: # Check if battle is won
