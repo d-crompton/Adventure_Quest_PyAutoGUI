@@ -57,6 +57,25 @@ def change_weapon():
         except:
             continue
 
+def death_sequence():
+    print("You Died!")
+    time.sleep(2) # CONFIRM THIS IS ENOUGH TIME
+    pyautogui.leftClick(failureNextButton[0], failureNextButton[1])
+    time.sleep(5) # Wait for Boatman to row across
+    # Click whilst avoiding the Hourglass 3 times to return to town
+    for i in range(3):
+        xPos = random.randint(boatmanCoords['leftX'], boatmanCoords['rightX'])
+        yPos = random.randint(boatmanCoords['topY'], boatmanCoords['bottomY'])
+        pyautogui.leftClick(xPos, yPos)
+        time.sleep(1)
+
+def drink_health_potion(numHpPots):
+    pyautogui.leftClick(itemButton[0], itemButton[1])
+    time.sleep(1)
+    leftClick(hpPotionButton[0], hpPotionButton[1])
+    numHpPots -= 1
+    return numHpPots
+
 def attack():
     leftClick(attackButton[0], attackButton[1])
     time.sleep(4 + random.randint(1, 3))

@@ -1,6 +1,5 @@
 import pyautogui # Requires the installation of pillow
 import time
-import random
 
 import support.town as town
 import support.battle as battle
@@ -45,30 +44,15 @@ while True:
         except:
             # FAILURE
             if(pyautogui.pixel(battle.failureL[0], battle.failureL[1])[0]) == battle.failureLRed:
-                print("You Died!")
-                # Click Next button
-                time.sleep(2) # CONFIRM THIS IS ENOUGH TIME
-                pyautogui.leftClick(battle.failureNextButton[0], battle.failureNextButton[1])
-                time.sleep(5) # Wait for Boatman to row across
-                # Click whilst avoiding the Hourglass 3 times to return to town
-                for i in range(3):
-                    xPos = random.randint(battle.boatmanCoords['leftX'], battle.boatmanCoords['rightX'])
-                    yPos = random.randint(battle.boatmanCoords['topY'], battle.boatmanCoords['bottomY'])
-                    pyautogui.leftClick(xPos, yPos)
-                    time.sleep(1)
+                battle.death_sequence()
                 break # Break the Battle loop
             else:
             # POTION - If player has low health and more than 0 potions
                 if(pyautogui.pixel(battle.healthbar[0], battle.healthbar[1])[0]) == battle.healthbarBlack and numHpPots > 0:
-                    pyautogui.leftClick(battle.itemButton[0], battle.itemButton[1])
-                    time.sleep(1)
-                    leftClick(battle.hpPotionButton[0], battle.hpPotionButton[1])
-                    numHpPots =- 1
+                    numHpPots = battle.drink_health_potion(numHpPots)
             # ATTACK
                 else:
                     battle.attack()
-                    # leftClick(battle.attackButton[0], battle.attackButton[1])
-                    # time.sleep(4 + random.randint(1, 3))
 
 
 
