@@ -4,16 +4,12 @@ import random
 
 import support.town as town
 import support.battle as battle
+from support.supportFunctions import leftClick
 
 # VARIABLES
 numBattles = 0
 numHpPots = 2
 battleDoneImage = './images/battle_done.png'
-
-# FUNCTIONS
-def leftClick(x, y):
-    pyautogui.leftClick(x + random.randint(1, 20), y + random.randint(1, 15))
-    time.sleep(random.randint(2,3))
 
 # SCRIPT
 time.sleep(5) # For user to switch to AQ window
@@ -23,13 +19,8 @@ while True:
     if(pyautogui.pixel(town.todaysEventButton[0], town.todaysEventButton[1])[0]) == town.todaysEventButtonRed:
         if numBattles > 0:
             leftClick(town.healingFountain[0], town.healingFountain[1])
-            if numHpPots < 2:
-                leftClick(town.guardianTower[0], town.guardianTower[1])
-                leftClick(town.towerDoor[0], town.towerDoor[1])
-                leftClick(town.potionsChest[0], town.potionsChest[1])
-                numHpPots = 2
-                leftClick(town.leaveTower[0], town.leaveTower[1])
-            time.sleep(2)
+            numHpPots = town.refill_hp_potions(numHpPots)
+            time.sleep(1)
         leftClick(town.startBattle[0], town.startBattle[1])
         numBattles += 1
         print(f"Starting Battle {numBattles}...")
@@ -46,12 +37,17 @@ while True:
                 print("You Won!")
                 time.sleep(2)
                 leftClick(doneButton.left + (doneButton.width/2), doneButton.top + (doneButton.height/2))
+                # TO DO - CHECK HERE IF YOU'VE LEVELLED UP - Window appears after you've "done" the fight
+                # NEED TO TEST
+                # if(pyautogui.pixel(battle.levelUpE)[0]) == battle.levelUpERed:
+                #     print("LEVEL UP")
                 break
         except:
             # FAILURE
             if(pyautogui.pixel(battle.failureL[0], battle.failureL[1])[0]) == battle.failureLRed:
                 print("You Died!")
                 # Click Next button
+                time.sleep(2) # CONFIRM THIS IS ENOUGH TIME
                 pyautogui.leftClick(battle.failureNextButton[0], battle.failureNextButton[1])
                 time.sleep(5) # Wait for Boatman to row across
                 # Click whilst avoiding the Hourglass 3 times to return to town
@@ -70,8 +66,9 @@ while True:
                     numHpPots =- 1
             # ATTACK
                 else:
-                    leftClick(battle.attackButton[0], battle.attackButton[1])
-                    time.sleep(4 + random.randint(1, 3))
+                    battle.attack()
+                    # leftClick(battle.attackButton[0], battle.attackButton[1])
+                    # time.sleep(4 + random.randint(1, 3))
 
 
 
