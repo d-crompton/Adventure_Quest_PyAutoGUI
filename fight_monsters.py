@@ -38,8 +38,10 @@ while True:
                 leftClick(doneButton.left + (doneButton.width/2), doneButton.top + (doneButton.height/2))
                 # TO DO - CHECK HERE IF YOU'VE LEVELLED UP - Window appears after you've "done" the fight
                 # NEED TO TEST
+                # time.sleep(2)
                 # if(pyautogui.pixel(battle.levelUpE)[0]) == battle.levelUpERed:
                 #     print("LEVEL UP")
+                #     pyautogui.leftClick(battle.failureNextButton[0], battle.failureNextButton[1])
                 break
         except:
             # FAILURE
