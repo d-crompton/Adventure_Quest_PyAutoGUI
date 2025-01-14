@@ -26,8 +26,10 @@ while True:
         time.sleep(5)
 
 # In Battle
-    # SET-UP CHARACTER
-    battle.change_weapon()
+    battle.change_equipment()
+    if numBattles > 2:
+        battle.equip_guardian_shield()
+
     # ADD CONDITION TO CHECK IF YOU'RE ACTUALLY IN BATTLE before starting loop - Enemy health bar?
     while True:
         try: # Check if battle is won
@@ -47,7 +49,7 @@ while True:
             # FAILURE
             if(pyautogui.pixel(battle.failureL[0], battle.failureL[1])[0]) == battle.failureLRed:
                 battle.death_sequence()
-                break # Break the Battle loop
+                break
             else:
             # POTION - If player has low health and more than 0 potions
                 if(pyautogui.pixel(battle.healthbar[0], battle.healthbar[1])[0]) == battle.healthbarBlack and numHpPots > 0:

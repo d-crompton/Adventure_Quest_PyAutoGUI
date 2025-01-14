@@ -22,6 +22,8 @@ weaponsYCoords = { # The Y positions of each button in the sub-menu, their names
     'Light': 692, # Darkness weapon
     'Darkness': 727 # Light weapon
 }
+shieldsButton = (963, 631)
+guardianShield = (1329, 492)
 petsButton = (964, 716)
 petsXCoord = 1327
 petsYCoord = {
@@ -52,7 +54,7 @@ healthbarBlack = 10
 
 # Functions
 # TO DO - Add change to Pet and then change function name to change_equipment
-def change_weapon():
+def change_equipment():
     pyautogui.moveTo(enemyPic[0], enemyPic[1])
     time.sleep(2)
 
@@ -75,6 +77,11 @@ def change_weapon():
                 break  
         except:
             continue
+
+def equip_guardian_shield():
+    leftClick(shieldsButton[0], shieldsButton[1])
+    time.sleep(1)
+    pyautogui.doubleClick(guardianShield[0], guardianShield[1])
 
 def death_sequence():
     print("You Died!")
