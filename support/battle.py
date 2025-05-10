@@ -53,7 +53,6 @@ failureLRed = 123
 healthbarBlack = 10
 
 # Functions
-# TO DO - Add change to Pet and then change function name to change_equipment
 def change_equipment():
     pyautogui.moveTo(enemyPic[0], enemyPic[1])
     time.sleep(2)
@@ -79,13 +78,14 @@ def change_equipment():
             continue
 
 def equip_guardian_shield():
+    time.sleep(1)
     leftClick(shieldsButton[0], shieldsButton[1])
     time.sleep(1)
     pyautogui.doubleClick(guardianShield[0], guardianShield[1])
 
 def death_sequence():
     print("You Died!")
-    time.sleep(2) # CONFIRM THIS IS ENOUGH TIME
+    time.sleep(2)
     pyautogui.leftClick(failureNextButton[0], failureNextButton[1])
     time.sleep(5) # Wait for Boatman to row across
     # Click whilst avoiding the Hourglass 3 times to return to town

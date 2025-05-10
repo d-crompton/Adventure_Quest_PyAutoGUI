@@ -27,23 +27,17 @@ while True:
 
 # In Battle
     battle.change_equipment()
-    if numBattles > 2:
+    if numBattles < 2:
         battle.equip_guardian_shield()
 
-    # ADD CONDITION TO CHECK IF YOU'RE ACTUALLY IN BATTLE before starting loop - Enemy health bar?
     while True:
         try: # Check if battle is won
             doneButton = pyautogui.locateOnScreen(battleDoneImage, grayscale=True, confidence=0.8)
             if doneButton != None:
-                print("You Won!")
                 time.sleep(2)
                 leftClick(doneButton.left + (doneButton.width/2), doneButton.top + (doneButton.height/2))
-                # TO DO - CHECK HERE IF YOU'VE LEVELLED UP - Window appears after you've "done" the fight
-                # NEED TO TEST
-                # time.sleep(2)
-                # if(pyautogui.pixel(battle.levelUpE)[0]) == battle.levelUpERed:
-                #     print("LEVEL UP")
-                #     pyautogui.leftClick(battle.failureNextButton[0], battle.failureNextButton[1])
+                # TODO - Check if you've levelled up and then click the "Next" button after Level up animation 
+                # time.sleep(2) # Wait for level up animation
                 break
         except:
             # FAILURE
